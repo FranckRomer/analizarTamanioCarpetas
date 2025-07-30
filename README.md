@@ -1,22 +1,29 @@
 # 📁 Analizador de Tamaño de Carpetas
 
-Una herramienta de línea de comandos en Python para analizar y mostrar el tamaño de las carpetas en tu sistema de archivos.
+Una herramienta moderna en Python para analizar y mostrar el tamaño de las carpetas en tu sistema de archivos, con interfaz gráfica elegante y modo línea de comandos.
+
+![Interfaz del Analizador de Carpetas](src/public/image.png)
+
+*Interfaz gráfica moderna con tema oscuro y funcionalidades intuitivas*
 
 ## 🚀 Características
 
+- **Interfaz gráfica moderna**: Interfaz elegante con CustomTkinter y tema oscuro
 - **Análisis completo**: Calcula el tamaño total de cada carpeta incluyendo todos los archivos y subcarpetas
 - **Unidades legibles**: Muestra los tamaños en unidades apropiadas (B, KB, MB, GB, TB)
 - **Ordenamiento inteligente**: Las carpetas se muestran ordenadas por tamaño (de mayor a menor)
 - **Manejo robusto de errores**: Gestiona permisos, archivos inaccesibles y rutas inexistentes
-- **Flexibilidad**: Permite especificar cualquier ruta o usar una ruta por defecto
-- **Sin dependencias externas**: Utiliza solo módulos de la biblioteca estándar de Python
+- **Flexibilidad**: Permite especificar cualquier ruta o usar rutas rápidas predefinidas
 - **Arquitectura modular**: Código organizado en módulos separados para mejor mantenimiento
-- **Interfaz interactiva**: Menú fácil de usar para seleccionar rutas comunes del sistema
+- **Doble modo**: Interfaz gráfica y línea de comandos
+- **Barra de progreso**: Visualización del progreso del análisis
+- **Rutas rápidas**: Botones para acceder rápidamente a carpetas comunes del sistema
 
 ## 📋 Requisitos
 
-- Python 3.6 o superior
+- Python 3.7 o superior
 - Sistema operativo: Windows, macOS, o Linux
+- Dependencias: CustomTkinter, Pillow
 
 ## 🛠️ Instalación
 
@@ -26,58 +33,69 @@ Una herramienta de línea de comandos en Python para analizar y mostrar el tama�
    cd analizarTamanioCarpetas
    ```
 
-2. **Instala las dependencias** (opcional, ya que no hay dependencias externas):
+2. **Instala las dependencias**:
    ```bash
    pip install -r requirements.txt
    ```
 
 ## 📖 Uso
 
-### Modo interactivo (recomendado)
+### Interfaz gráfica (recomendado)
 ```bash
 python src/main.py
 ```
-Esto mostrará un menú interactivo donde podrás seleccionar la ruta a analizar:
-
-```
-=== ANALIZADOR DE TAMAÑO DE CARPETAS ===
-
-Selecciona la ruta que deseas analizar:
-1. Mi carpeta de usuario
-2. Escritorio
-3. Documentos
-4. Descargas
-5. Imágenes
-6. Música
-7. Videos
-8. Ruta personalizada
-9. Salir
-
-Ingresa tu opción (1-9):
+o
+```bash
+python src/main.py --gui
 ```
 
-### Modo no interactivo (línea de comandos)
+### Modo línea de comandos
+```bash
+python src/main.py --cli "C:\Users\paco_\Documents"
+```
+o
 ```bash
 python src/main.py "C:\Users\paco_\Documents"
 ```
 
-### Ejemplos de uso
+### Mostrar ayuda
 ```bash
-# Modo interactivo (selecciona desde el menú)
-python src/main.py
-
-# Analizar el escritorio directamente
-python src/main.py "C:\Users\paco_\Desktop"
-
-# Analizar una unidad externa
-python src/main.py "D:\"
-
-# Analizar una carpeta específica
-python src/main.py "C:\Users\paco_\Downloads"
+python src/main.py --help
 ```
+
+## 🖥️ Interfaz gráfica
+
+La interfaz gráfica incluye:
+
+- **Selector de carpeta**: Campo de texto y botón para seleccionar la carpeta a analizar
+- **Rutas rápidas**: Botones para acceder rápidamente a carpetas comunes:
+  - 🏠 Usuario
+  - 🖥️ Escritorio
+  - 📄 Documentos
+  - ⬇️ Descargas
+  - 🖼️ Imágenes
+  - 🎵 Música
+  - 🎬 Videos
+- **Barra de progreso**: Muestra el progreso del análisis
+- **Área de resultados**: Muestra los resultados formateados
+- **Estado en tiempo real**: Información sobre el proceso actual
+
+### Características de la interfaz:
+- **Tema oscuro**: Interfaz moderna y fácil para los ojos
+- **Responsiva**: Se adapta al tamaño de la ventana
+- **No bloqueante**: El análisis se ejecuta en un hilo separado
+- **Validación**: Verifica que las rutas existan antes de analizar
 
 ## 📊 Ejemplo de salida
 
+### Interfaz gráfica:
+La interfaz muestra los resultados en un área de texto formateada con:
+- Ruta analizada
+- Fecha y hora del análisis
+- Lista ordenada de carpetas con sus tamaños
+- Total del espacio utilizado
+
+### Línea de comandos:
 ```
 === ANALIZADOR DE TAMAÑO DE CARPETAS ===
 
@@ -104,10 +122,11 @@ TOTAL:                                   4.78 GB
 ```
 analizarTamanioCarpetas/
 ├── src/
-│   └── main.py              # Punto de entrada principal
-├── functions/
-│   ├── __init__.py          # Hace que functions sea un módulo
-│   └── analizador_functions.py  # Funciones del analizador
+│   ├── main.py              # Punto de entrada principal
+│   ├── gui_interface.py     # Interfaz gráfica
+│   └── functions/
+│       ├── __init__.py      # Hace que functions sea un módulo
+│       └── analizador_functions.py  # Funciones del analizador
 ├── requirements.txt         # Dependencias del proyecto
 └── README.md               # Este archivo
 ```
@@ -123,16 +142,21 @@ Convierte bytes a una unidad más legible (B, KB, MB, GB, TB).
 ### `analizar_carpetas(ruta_base)` (en `functions/analizador_functions.py`)
 Analiza todas las carpetas en la ruta base y muestra su tamaño ordenado.
 
-### `main()` (en `src/main.py`)
-Función principal que maneja los argumentos de línea de comandos y coordina la ejecución.
+### `AnalizadorGUI` (en `src/gui_interface.py`)
+Clase principal de la interfaz gráfica que maneja toda la interacción con el usuario.
 
 ## ⚠️ Consideraciones
 
 - **Permisos**: El script necesita permisos de lectura en las carpetas que analiza
 - **Tiempo de ejecución**: El análisis puede tomar tiempo en carpetas con muchos archivos
 - **Memoria**: Para carpetas muy grandes, el script puede consumir memoria significativa
+- **Dependencias**: Requiere CustomTkinter para la interfaz gráfica
 
 ## 🐛 Solución de problemas
+
+### Error: "No se pudo importar la interfaz gráfica"
+- Instala las dependencias: `pip install -r requirements.txt`
+- Verifica que tienes Python 3.7 o superior
 
 ### Error: "No tienes permisos para acceder"
 - Ejecuta el script como administrador
