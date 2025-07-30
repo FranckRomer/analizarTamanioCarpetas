@@ -1,0 +1,1 @@
+# Módulo de funciones para el analizador de carpetas 

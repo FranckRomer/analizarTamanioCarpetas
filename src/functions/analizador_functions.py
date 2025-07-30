@@ -76,35 +76,4 @@ def analizar_carpetas(ruta_base):
     except FileNotFoundError:
         print(f"Error: La ruta '{ruta_base}' no existe.")
     except PermissionError:
-        print(f"Error: No tienes permisos para acceder a '{ruta_base}'.")
-
-def main():
-    """
-    Función principal del script
-    """
-    # Ruta por defecto (puedes cambiarla)
-    ruta_por_defecto = r"C:\Users\paco_"
-    
-    # Verificar si se proporcionó una ruta como argumento
-    if len(sys.argv) > 1:
-        ruta_analizar = sys.argv[1]
-    else:
-        ruta_analizar = ruta_por_defecto
-    
-    print("=== ANALIZADOR DE TAMAÑO DE CARPETAS ===")
-    print()
-    
-    # Verificar que la ruta existe
-    if not os.path.exists(ruta_analizar):
-        print(f"Error: La ruta '{ruta_analizar}' no existe.")
-        print("Uso: python analizador.py [ruta]")
-        return
-    
-    # Analizar las carpetas
-    analizar_carpetas(ruta_analizar)
-
-if __name__ == "__main__":
-    main()
-
-
-
+        print(f"Error: No tienes permisos para acceder a '{ruta_base}'.") 

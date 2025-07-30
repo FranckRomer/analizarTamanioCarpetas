@@ -1,0 +1,17 @@
+# Dependencias para el Analizador de Tamaño de Carpetas
+# Interfaz gráfica moderna y funcional
+
+# Interfaz de usuario
+customtkinter==5.2.0
+Pillow==10.0.1
+
+# Módulos de la biblioteca estándar utilizados:
+# - os: Para operaciones del sistema de archivos
+# - sys: Para argumentos de línea de comandos
+# - pathlib: Para manipulación de rutas
+# - tkinter: Para la interfaz gráfica base
+
+# Dependencias opcionales para futuras funcionalidades:
+# colorama==0.4.6  # Para colores en terminal
+# tqdm==4.66.1     # Para barras de progreso
+# psutil==5.9.6    # Para información del sistema
